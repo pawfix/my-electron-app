@@ -10,8 +10,8 @@
     "build:targz": "electron-builder --linux tar.gz"
   },
   "build": {
-    "appId": "com.example.myapp",
-    "productName": "MyApp",
+    "appId": "com.calc.paw",
+    "productName": "PawCalc",
     "directories": {
       "output": "dist"
     },

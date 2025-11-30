@@ -4,6 +4,7 @@ const path = require('path');
 let mainWindow;
 let secondWindow;
 
+
 function createMainWindow() {
     mainWindow = new BrowserWindow({
         width: 900,
@@ -55,6 +56,10 @@ ipcMain.on('window-maximize', e => {
         win.maximize();
     }
 });
+
+win.setAspectRatio(1 / 2)
+win.setMinimumSize(200, 400);
+
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit();
 });
