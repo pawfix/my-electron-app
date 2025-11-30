@@ -23,9 +23,10 @@
         background 0.5s ease,
         background-color 0.5s ease,
         color 0.5s ease;
+    overflow: hidden;
 }
 header {
-    height: 25px;
+    height: 50px;
     margin-bottom: 2vh;
     -webkit-app-region: drag;
     cursor: move;
@@ -36,10 +37,14 @@ header {
         height: 25px;
         width: 25px;
         margin: 0.5vh;
+        margin-left: 1vh;
         color: black;
         background-color: transparent;
         border: none;
         cursor: pointer;
+        &.window {
+            float: left;
+        }
         &:hover {
             cursor: pointer;
             background-color: rgba(128, 128, 128, 0.5);
