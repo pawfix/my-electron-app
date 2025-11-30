@@ -1,0 +1,45 @@
+{
+  "name": "Calc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:win": "electron-builder --win portable",
+    "build:appimage": "electron-builder --linux AppImage",
+    "build:targz": "electron-builder --linux tar.gz"
+  },
+  "build": {
+    "appId": "com.example.myapp",
+    "productName": "MyApp",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!node_modules",
+      "!dist",
+      "!build.js",
+      "!*.scss"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "tar.gz"
+      ]
+    }
+  },
+  "keywords": [],
+  "author": "Pawfix",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^39.2.4",
+    "electron-builder": "24.13.3"
+  }
+}
