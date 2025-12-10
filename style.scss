@@ -1,3 +1,8 @@
+@font-face {
+    font-family: JetBrains;
+    src: url(assets/font/JetBrainsMono-Regular.ttf);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +11,8 @@
     transition:
         background 0.5s ease,
         background-color 0.5s ease,
-        color 0.5s ease;
+        color 0.5s ease,
+        transform 0.2s ease-in-out;
     -webkit-transition:
         background 0.5s ease,
         background-color 0.5s ease,
@@ -26,10 +32,11 @@
     overflow: hidden;
 }
 header {
-    height: 50px;
+    height: 25px;
     margin-bottom: 2vh;
     -webkit-app-region: drag;
     cursor: move;
+
     button {
         -webkit-app-region: no-drag;
         cursor: default;
@@ -70,4 +77,107 @@ header {
                 font-size 0.3s ease;
         }
     }
+}
+main {
+    aspect-ratio: 1/2;
+    font-size: larger;
+    font-family: JetBrains;
+    margin: auto;
+    width: 40vw;
+    max-height: 1200px;
+    min-width: 375px;
+    max-width: 800px;
+    height: 90vh;
+    background-color: wheat;
+    border: 5px solid black;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+    input {
+        width: 80%;
+        height: 10%;
+        margin-top: 5%;
+        margin-bottom: 5vh;
+        padding: 10%;
+        font-size: larger;
+        text-align: right;
+        transition:
+            border-radius 0.2s ease-in-out,
+            box-shadow 0.4s ease-in-out;
+        -webkit-transition: border-radius 0.2s ease-in-out;
+        -moz-transition: border-radius 0.2s ease-in-out;
+        -ms-transition: border-radius 0.2s ease-in-out;
+        -o-transition: border-radius 0.2s ease-in-out;
+        &:hover,
+        &:focus {
+            border-radius: 15px;
+            -webkit-border-radius: 15px;
+            -moz-border-radius: 15px;
+            -ms-border-radius: 15px;
+            -o-border-radius: 15px;
+        }
+    }
+
+    p.result {
+        font-size: small;
+        color: rgb(128, 128, 128, 0.8);
+        text-decoration: underline gray;
+        top: 5vh;
+        width: 100%;
+        position: relative;
+    }
+    div.calcGrid {
+        text-align: center;
+        display: grid;
+        height: 50vh;
+        grid-template-columns: repeat(3, 33.3%);
+        grid-template-rows: repeat(5, 10vh);
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-bottom: 5vh;
+    }
+    div.calcDiv {
+        font-size: xx-large;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+            background-color: rgb(255, 242, 199);
+            cursor: pointer;
+            border-radius: 1vh;
+            -webkit-border-radius: 1vh;
+            -moz-border-radius: 1vh;
+            -ms-border-radius: 1vh;
+            -o-border-radius: 1vh;
+        }
+        &:focus {
+            background-color: rgb(255, 250, 210);
+        }
+    }
+    div.calcBtns {
+        width: 90%;
+        margin-left: 5%;
+        button {
+            width: 45%;
+            height: 5vh;
+            font-size: xx-large;
+            border: none;
+            background-color: wheat;
+            border-radius: 25px;
+            -webkit-border-radius: 25px;
+            -moz-border-radius: 25px;
+            -ms-border-radius: 25px;
+            -o-border-radius: 25px;
+            &:hover {
+                background-color: rgb(255, 242, 199);
+                cursor: pointer;
+            }
+        }
+    }
+}
+.calcFlash {
+    background-color: rgb(255, 242, 199);
 }

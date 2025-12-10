@@ -15,8 +15,8 @@ function createMainWindow() {
             contextIsolation: false
         }
     });
-    mainWindow.setAspectRatio(3 / 5);
-    mainWindow.setMinimumSize(300, 500);
+    //mainWindow.setAspectRatio(3 / 5);
+    mainWindow.setMinimumSize(400, 600);
     mainWindow.loadFile(path.join(__dirname, "index.html"));
 }
 
@@ -61,7 +61,6 @@ ipcMain.on("window-maximize", e => {
     win.isMaximized() ? win.unmaximize() : win.maximize();
 });
 
-// Quit behavior
 app.on("window-all-closed", () => {
     if (process.platform !== "darwin") app.quit();
 });

@@ -1,9 +1,13 @@
+@font-face {
+  font-family: JetBrains;
+  src: url(assets/font/JetBrainsMono-Regular.ttf);
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   text-align: center;
-  transition: background 0.5s ease, background-color 0.5s ease, color 0.5s ease;
+  transition: background 0.5s ease, background-color 0.5s ease, color 0.5s ease, transform 0.2s ease-in-out;
   -webkit-transition: background 0.5s ease, background-color 0.5s ease, color 0.5s ease;
   -moz-transition: background 0.5s ease, background-color 0.5s ease, color 0.5s ease;
   -ms-transition: background 0.5s ease, background-color 0.5s ease, color 0.5s ease;
@@ -12,7 +16,7 @@
 }
 
 header {
-  height: 50px;
+  height: 25px;
   margin-bottom: 2vh;
   -webkit-app-region: drag;
   cursor: move;
@@ -46,4 +50,105 @@ header button:hover {
   -moz-transition: transform 0.3s ease, font-size 0.3s ease;
   -ms-transition: transform 0.3s ease, font-size 0.3s ease;
   -o-transition: transform 0.3s ease, font-size 0.3s ease;
+}
+
+main {
+  aspect-ratio: 1/2;
+  font-size: larger;
+  font-family: JetBrains;
+  margin: auto;
+  width: 40vw;
+  max-height: 1200px;
+  min-width: 375px;
+  max-width: 800px;
+  height: 90vh;
+  background-color: wheat;
+  border: 5px solid black;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+}
+main input {
+  width: 80%;
+  height: 10%;
+  margin-top: 5%;
+  margin-bottom: 5vh;
+  padding: 10%;
+  font-size: larger;
+  text-align: right;
+  transition: border-radius 0.2s ease-in-out, box-shadow 0.4s ease-in-out;
+  -webkit-transition: border-radius 0.2s ease-in-out;
+  -moz-transition: border-radius 0.2s ease-in-out;
+  -ms-transition: border-radius 0.2s ease-in-out;
+  -o-transition: border-radius 0.2s ease-in-out;
+}
+main input:hover, main input:focus {
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+main p.result {
+  font-size: small;
+  color: rgba(128, 128, 128, 0.8);
+  -webkit-text-decoration: underline gray;
+          text-decoration: underline gray;
+  top: 5vh;
+  width: 100%;
+  position: relative;
+}
+main div.calcGrid {
+  text-align: center;
+  display: grid;
+  height: 50vh;
+  grid-template-columns: repeat(3, 33.3%);
+  grid-template-rows: repeat(5, 10vh);
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 5vh;
+}
+main div.calcDiv {
+  font-size: xx-large;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main div.calcDiv:hover {
+  background-color: rgb(255, 242, 199);
+  cursor: pointer;
+  border-radius: 1vh;
+  -webkit-border-radius: 1vh;
+  -moz-border-radius: 1vh;
+  -ms-border-radius: 1vh;
+  -o-border-radius: 1vh;
+}
+main div.calcDiv:focus {
+  background-color: rgb(255, 250, 210);
+}
+main div.calcBtns {
+  width: 90%;
+  margin-left: 5%;
+}
+main div.calcBtns button {
+  width: 45%;
+  height: 5vh;
+  font-size: xx-large;
+  border: none;
+  background-color: wheat;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+}
+main div.calcBtns button:hover {
+  background-color: rgb(255, 242, 199);
+  cursor: pointer;
+}
+
+.calcFlash {
+  background-color: rgb(255, 242, 199);
 }/*# sourceMappingURL=style.css.map */

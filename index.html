@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Electron App</title>
     <link rel="stylesheet" href="style.css">
+    <script src="btn.js" defer></script>
     <script src="script.js" defer></script>
   </head>
   <body>
@@ -14,6 +15,30 @@
       <button onclick="maximizeWindow()">▣</button>
       <button class="window" onclick="openSecondWindow()">⇄</button>
     </header>
-
+    <main>
+      <p id="result" class="result"></p>
+      <input type="text" tabindex="0" name id="calc" oninput="calc()">
+      <div class="calcBtns">
+        <button type="button" onclick="calcClear()" id="clearBtn">Clear</button>
+        <button type="button" onclick="calc()" id="solveBtn">Solve</button>
+      </div>
+      <div class="calcGrid">
+        <div onclick="calcBtn.call(this)" class="calcDiv7 calcDiv"><span>7</span></div>
+        <div onclick="calcBtn.call(this)" class="calcDiv8 calcDiv"><span>8</span></div>
+        <div onclick="calcBtn.call(this)" class="calcDiv9 calcDiv"><span>9</span></div>
+        <div onclick="calcBtn.call(this)" class="calcDiv4 calcDiv"><span>4</span></div>
+        <div onclick="calcBtn.call(this)" class="calcDiv5 calcDiv"><span>5</span></div>
+        <div onclick="calcBtn.call(this)" class="calcDiv6 calcDiv"><span>6</span></div>
+        <div onclick="calcBtn.call(this)" class="calcDiv1 calcDiv"><span>1</span></div>
+        <div onclick="calcBtn.call(this)" class="calcDiv2 calcDiv"><span>2</span></div>
+        <div onclick="calcBtn.call(this)" class="calcDiv3 calcDiv"><span>3</span></div>
+        <div onclick="calcBtn.call(this)" class="calcDiv10 calcDiv"><span>-</span></div>
+        <div onclick="calcBtn.call(this)" class="calcDiv11 calcDiv"><span>0</span></div>
+        <div onclick="calcBtn.call(this)" class="calcDiv12 calcDiv"><span>+</span></div>
+        <div onclick="calcBtn.call(this)" class="calcDiv13 calcDiv"><span>/</span></div>
+        <div onclick="calcBtn.call(this)" class="calcDiv14 calcDiv"><span>*</span></div>
+        <div onclick="calcBtn.call(this)" class="calcDiv15 calcDiv"><span>!</span></div>
+      </div>
+    </main>
   </body>
 </html>
