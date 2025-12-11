@@ -123,10 +123,14 @@ main {
     p.result {
         font-size: small;
         color: rgb(128, 128, 128, 0.8);
+        outline: 5px solid transparent;
+        margin: auto;
+        margin-top: 4vh;
+        min-width: 375px;
+        max-width: 800px;
         text-decoration: underline gray;
-        top: 5vh;
-        width: 100%;
-        position: relative;
+        width: 40vw;
+        position: absolute;
     }
     div.calcGrid {
         text-align: center;
