@@ -1,7 +1,7 @@
 {
   "name": "Calc",
   "version": "1.0.0",
-  "description": "",
+  "description": "Some description ig",
   "main": "main.js",
   "scripts": {
     "start": "electron .",

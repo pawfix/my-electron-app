@@ -7,6 +7,12 @@ on:
     tags:
       - 'v*.*.*'
 
+env:
+  ELECTRON_MIRROR: "https://npmmirror.com/mirrors/electron/"
+  ELECTRON_CUSTOM_DIR: "v39.2.4"
+  ELECTRON_CACHE: "~/.cache/electron"
+  ELECTRON_BUILDER_CACHE: "~/.cache/electron-builder"
+
 jobs:
   setup:
     name: Setup Node
@@ -36,19 +42,29 @@ jobs:
     runs-on: ubuntu-latest
     needs: setup
     env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      ELECTRON_MIRROR: "https://npmmirror.com/mirrors/electron/"
+      ELECTRON_CUSTOM_DIR: "v39.2.4"
+      ELECTRON_CACHE: "~/.cache/electron"
+      ELECTRON_BUILDER_CACHE: "~/.cache/electron-builder"
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 20
+
+      - name: Clear Electron cache
+        run: rm -rf ~/.cache/electron ~/.cache/electron-builder
+
       - name: Restore Cache
         uses: actions/cache@v3
         with:
           path: node_modules
           key: node-modules-${{ hashFiles('package-lock.json') }}
+
       - name: Build Linux AppImage
         run: npx electron-builder --linux AppImage
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -60,21 +76,32 @@ jobs:
     runs-on: ubuntu-latest
     needs: setup
     env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      ELECTRON_MIRROR: "https://npmmirror.com/mirrors/electron/"
+      ELECTRON_CUSTOM_DIR: "v39.2.4"
+      ELECTRON_CACHE: "~/.cache/electron"
+      ELECTRON_BUILDER_CACHE: "~/.cache/electron-builder"
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 20
+
+      - name: Clear Electron cache
+        run: rm -rf ~/.cache/electron ~/.cache/electron-builder
+
       - name: Restore Cache
         uses: actions/cache@v3
         with:
           path: node_modules
           key: node-modules-${{ hashFiles('package-lock.json') }}
+
       - name: Install Dependencies
         run: npm ci
+
       - name: Build Linux tar.gz
         run: npx electron-builder --linux tar.gz
+        
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -86,16 +113,21 @@ jobs:
     runs-on: windows-latest
     needs: setup
     env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      ELECTRON_MIRROR: "https://npmmirror.com/mirrors/electron/"
+      ELECTRON_CUSTOM_DIR: "v39.2.4"
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 20
+
       - name: Install Dependencies
         run: npm ci
+
       - name: Build Windows
         run: npx electron-builder --win portable
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -107,16 +139,21 @@ jobs:
     runs-on: windows-latest
     needs: setup
     env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      ELECTRON_MIRROR: "https://npmmirror.com/mirrors/electron/"
+      ELECTRON_CUSTOM_DIR: "v39.2.4"
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 20
+
       - name: Install Dependencies
         run: npm ci
+
       - name: Build Windows
         run: npx electron-builder --win zip
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -124,25 +161,27 @@ jobs:
           path: dist/*.zip
 
   release:
-      name: Create GitHub Release
-      runs-on: ubuntu-latest
-      needs:
-        - build-win
-        - build-linux-appimage
-        - build-linux-tar
-      steps:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs:
+      - build-win
+      - build-linux-appimage
+      - build-linux-tar
+    steps:
       - uses: actions/checkout@v3
 
       - name: Download Artifacts
         uses: actions/download-artifact@v4
         with:
           path: dist
+
       - name: Get commit messages
         id: commits
         run: |
           echo "COMMIT_MESSAGES<<EOF" >> $GITHUB_ENV
           git log -1 --pretty=format:"%s%n%b" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
+
       - name: Set release name and tag
         id: release_name_tag
         run: |
