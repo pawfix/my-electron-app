@@ -100,7 +100,7 @@ jobs:
           name: windows-portable
           path: dist/*.exe
 
-  build-win:
+  build-win-zip:
     name: Build Windows Portable
     runs-on: windows-latest
     needs: setup
