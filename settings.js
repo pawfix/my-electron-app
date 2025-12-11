@@ -21,3 +21,24 @@ function logColorScheme() {
             console.log('Color scheme is unknown');
     }
 }
+
+function setColorSchemeBlue() {
+    try {
+        const settings = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+        settings.Settings.colorScheme = 'blue';
+        fs.writeFileSync(filePath, JSON.stringify(settings, null, 2), 'utf8');
+        console.log('Color scheme set to blue');
+    } catch (err) {
+        console.error('Error updating color scheme:', err);
+    }
+}
+function setColorSchemeBlack() {
+    try {
+        const settings = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+        settings.Settings.colorScheme = 'black';
+        fs.writeFileSync(filePath, JSON.stringify(settings, null, 2), 'utf8');
+        console.log('Color scheme set to black');
+    } catch (err) {
+        console.error('Error updating color scheme:', err);
+    }
+}
