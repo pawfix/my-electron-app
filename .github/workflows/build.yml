@@ -167,6 +167,7 @@ jobs:
       - build-win
       - build-linux-appimage
       - build-linux-tar
+      - build-win-zip
     steps:
       - uses: actions/checkout@v3
 
