@@ -30,6 +30,8 @@ function createSecondWindow() {
         modal: false,
         webPreferences: {
             preload: path.join(__dirname, "preload.js"),
+            preload: path.join(__dirname, "style.js"),
+            preload: path.join(__dirname, "settings.js"),
             nodeIntegration: true,
             contextIsolation: false
         }

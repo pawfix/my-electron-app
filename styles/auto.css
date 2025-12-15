@@ -1,0 +1,20 @@
+:root {
+    --color: black;
+    --bg-main: wheat;
+    --color-gray: rgba(128, 128, 128, 0.8);
+    --transparent: transparent;
+    --CalcDiv-hover: rgb(255, 242, 199);
+    --calcDiv-focus: rgb(255, 250, 210);
+    --text-deco: gray;
+}
+@media screen and (prefers-color-scheme: dark) {
+    :root {
+    --color: white;
+    --bg-main: rgb(10, 32, 76);
+    --color-gray: rgba(127, 127, 127, 0.8);
+    --transparent: transparent;
+    --CalcDiv-hover: rgb(0, 13, 56);
+    --calcDiv-focus: rgb(0, 5, 45);
+    --text-deco: gray;
+    }
+}

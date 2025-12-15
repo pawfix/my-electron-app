@@ -1,11 +1,12 @@
 @font-face {
     font-family: JetBrains;
-    src: url(assets/font/JetBrainsMono-Regular.ttf);
+    src: url(styles/font/JetBrainsMono-Regular.ttf);
 }
 
 * {
     margin: 0;
     padding: 0;
+    color: var(--color);
     box-sizing: border-box;
     text-align: center;
     transition:
@@ -31,6 +32,12 @@
         color 0.5s ease;
     overflow: hidden;
 }
+body {
+    background-color: var(--bg-main);
+}
+button {
+    color: black;
+}
 header {
     height: 25px;
     margin-bottom: 2vh;
@@ -45,7 +52,7 @@ header {
         width: 25px;
         margin: 0.5vh;
         margin-left: 1vh;
-        color: black;
+        color: var(--color);
         background-color: transparent;
         border: none;
         cursor: pointer;
@@ -54,7 +61,7 @@ header {
         }
         &:hover {
             cursor: pointer;
-            background-color: rgba(128, 128, 128, 0.5);
+            background-color: var(--color-gray);
             transition:
                 transform 0.3s ease,
                 font-size 0.3s ease;
@@ -88,8 +95,8 @@ main {
     min-width: 375px;
     max-width: 800px;
     height: 90vh;
-    background-color: wheat;
-    border: 5px solid black;
+    background-color: var(--bg-main);
+    border: 5px solid var(--color);
     border-radius: 25px;
     -webkit-border-radius: 25px;
     -moz-border-radius: 25px;
@@ -122,13 +129,13 @@ main {
 
     p.result {
         font-size: small;
-        color: rgb(128, 128, 128, 0.8);
+        color: var(--color-gray);
         outline: 5px solid transparent;
         margin: auto;
         margin-top: 4vh;
         min-width: 375px;
         max-width: 800px;
-        text-decoration: underline gray;
+        text-decoration: underline var(--text-deco);
         width: 40vw;
         position: absolute;
     }
@@ -149,7 +156,7 @@ main {
         align-items: center;
 
         &:hover {
-            background-color: rgb(255, 242, 199);
+            background-color: var(--calcDiv-hover);
             cursor: pointer;
             border-radius: 1vh;
             -webkit-border-radius: 1vh;
@@ -158,7 +165,7 @@ main {
             -o-border-radius: 1vh;
         }
         &:focus {
-            background-color: rgb(255, 250, 210);
+            background-color: var(--calcDiv-focus);
         }
     }
     div.calcBtns {
@@ -169,19 +176,19 @@ main {
             height: 5vh;
             font-size: xx-large;
             border: none;
-            background-color: wheat;
+            background-color: var(--bg-main);
             border-radius: 25px;
             -webkit-border-radius: 25px;
             -moz-border-radius: 25px;
             -ms-border-radius: 25px;
             -o-border-radius: 25px;
             &:hover {
-                background-color: rgb(255, 242, 199);
+                background-color: var(--calcDiv-hover);
                 cursor: pointer;
             }
         }
     }
 }
 .calcFlash {
-    background-color: rgb(255, 242, 199);
+    background-color: var(--calcDiv-hover);
 }

@@ -12,6 +12,15 @@
   "build": {
     "appId": "com.calc.paw",
     "productName": "PawCalc",
+    "extraResources": [
+      {
+        "from": "./assets/",
+        "to": "extraResources",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
     "directories": {
       "output": "dist"
     },
@@ -40,6 +49,6 @@
   "license": "ISC",
   "devDependencies": {
     "electron": "^39.2.4",
-    "electron-builder": "24.13.3"
+    "electron-builder": "^24.13.3"
   }
 }

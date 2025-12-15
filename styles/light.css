@@ -1,0 +1,9 @@
+:root {
+    --color: black;
+    --bg-main: wheat;
+    --color-gray: rgba(128, 128, 128, 0.8);
+    --transparent: transparent;
+    --CalcDiv-hover: rgb(255, 242, 199);
+    --calcDiv-focus: rgb(255, 250, 210);
+    --text-deco: gray;
+}
