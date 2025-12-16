@@ -1,7 +1,7 @@
 {
-    "Settings": {
-        "colorScheme": "black",
-        "settingDir": "config/",
-        "language": "en"
-    }
+  "Settings": {
+    "settingDir": "config/",
+    "language": "en",
+    "colorScheme": "auto"
+  }
 }

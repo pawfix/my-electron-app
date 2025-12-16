@@ -1,14 +1,20 @@
-const { ipcRenderer } = require('electron');
-
 function openSecondWindow() {
-    ipcRenderer.send('open-second-window');
+    window.ipcRenderer.send('open-second-window')
 }
+
 function closeCurrentWindow() {
-    window.close();
+    window.close()
 }
+
 function minimizeWindow() {
-    ipcRenderer.send('window-minimize')
+    window.ipcRenderer.send('window-minimize')
 }
+
 function maximizeWindow() {
-    ipcRenderer.send('window-maximize')
+    window.ipcRenderer.send('window-maximize')
 }
+
+window.openSecondWindow = openSecondWindow
+window.closeCurrentWindow = closeCurrentWindow
+window.minimizeWindow = minimizeWindow
+window.maximizeWindow = maximizeWindow

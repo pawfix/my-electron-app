@@ -1,84 +1,97 @@
-const fs = require('fs');
-const path = require('path');
+const { ipcRenderer } = require('electron')
 
-const filePath = path.join(__dirname, '../extraResources/settings.json');
+const ALLOWED_SCHEMES = ['auto', 'dark', 'light']
 
-function logColorScheme() {
-    const settings = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    const colorScheme = settings.Settings.colorScheme;
+// Request the current color scheme from main
+ipcRenderer.send('request-color-scheme')
 
-    switch (colorScheme) {
+// Request once on start
+ipcRenderer.once('log-color-scheme', (event, scheme) => {
+    console.log('Current color scheme is:', scheme)
+    applyColorSchemeLocally(scheme)
+})
+
+// Request call on demand
+function requestColorScheme() {
+    ipcRenderer.send('request-color-scheme')
+    ipcRenderer.once('log-color-scheme', (event, scheme) => {
+        //console.log('Current color scheme is:', scheme)
+        applyColorSchemeLocally(scheme)
+    })
+}
+
+// Apply, ale bez wysyłania do main
+function applyColorSchemeLocally(scheme) {
+    switch (scheme) {
+        case 'auto':
+            styleAuto()
+            break
+        case 'dark':
+            styleDark()
+            break
+        case 'light':
+            styleLight()
+            break
+        default:
+            console.error('Unknown color scheme received:', scheme)
+            styleAuto()
+    }
+}
+
+ipcRenderer.on('color-scheme-updated', (event, scheme) => {
+    //console.log('Color scheme updated to:', scheme);
+    switch (scheme) {
         case 'auto':
             styleAuto();
-            console.log('Color scheme is: auto');
             break;
         case 'dark':
             styleDark();
-            console.log('Color scheme is: dark');
             break;
         case 'light':
             styleLight();
-            console.log('Color scheme is: light');
             break;
         default:
             styleAuto();
-            console.log('Color scheme is unknown');
+        //console.error('Unknown color scheme received:', scheme);
     }
+});
+
+// Apply scheme and optionally send update to main
+function applyColorScheme(scheme) {
+    if (!ALLOWED_SCHEMES.includes(scheme)) {
+        //console.error('Invalid color scheme:', scheme)
+        return
+    }
+    ipcRenderer.send('set-color-scheme', scheme)
+    //console.log('Requested to set color scheme to:', scheme)
 }
 
+// Apply style to HTML
+let colorScheme = document.getElementById('htmlStyle')
 
 function styleAuto() {
-    let scheme = document.getElementById('htmlStyle');
-    scheme.href = 'styles/auto.css';
+    //console.log('Applying auto style')
+    colorScheme.href = 'styles/auto.css'
 }
 function styleDark() {
-    scheme.href = 'styles/dark.css';
-    let scheme = document.getElementById('htmlStyle');
-
+    //console.log('Applying dark style')
+    colorScheme.href = 'styles/dark.css'
 }
 function styleLight() {
-    scheme.href = 'styles/light.css';
-    let scheme = document.getElementById('htmlStyle');
-
+    //console.log('Applying light style')
+    colorScheme.href = 'styles/light.css'
 }
 
-
-function setColorSchemeAuto() {
-    try {
-        const settings = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-        settings.Settings.colorScheme = 'auto';
-        fs.writeFileSync(filePath, JSON.stringify(settings, null, 2), 'utf8');
-        console.log('Color scheme set to auto');
-    } catch (err) {
-        console.error('Error updating color scheme:', err);
-    }
-}
-function setColorSchemeDark() {
-    try {
-        const settings = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-        settings.Settings.colorScheme = 'dark';
-        fs.writeFileSync(filePath, JSON.stringify(settings, null, 2), 'utf8');
-        console.log('Color scheme set to dark');
-    } catch (err) {
-        console.error('Error updating color scheme:', err);
-    }
-}
+// Optional: ensure settings at startup
 function ensureSettings() {
-    if (!fs.existsSync(filePath)) {
-        const defaults = {
-            Settings: {
-                colorScheme: 'auto',
-                settingDir: 'config/',
-                language: 'en'
-            }
-        };
-        fs.writeFileSync(filePath, JSON.stringify(defaults, null, 2), 'utf8');
-    }
+    ipcRenderer.send('ensure-settings')
 }
 
+// Export
 module.exports = {
-    logColorScheme,
-    setColorSchemeAuto,
-    setColorSchemeDark,
+    applyColorScheme,
+    styleAuto,
+    styleDark,
+    styleLight,
     ensureSettings
-};
+}

@@ -4,7 +4,7 @@ function calc() {
     input = factorProces(input);
 
     if (!/^[0-9+\-*/().!\s]+$/.test(input)) {
-        console.log('Invalid input!');
+        //console.log('Invalid input!');
         return;
     }
 
@@ -13,7 +13,7 @@ function calc() {
         document.getElementById('result').textContent = output;
         document.getElementById('result').style.cssText = "color: black; transform: scale(1);";
     } catch {
-        console.log('error with= ' + input)
+        //console.log('error with= ' + input)
         document.getElementById('result').style.cssText = "color: red; transform: scale(1.1);";
     }
 }
